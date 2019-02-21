@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  .box {
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin: 10px;
+    background-color: red;
+  }
+
+  .hide {
+    display: none;
+  }
+</style>
+
+<body>
+  <div class="box hide"></div>
+  <div class="box hide"></div>
+  <div class="box hide"></div>
+  <div class="box hide"></div>
+
+</body>
+<script>
+  // tìm hết các tags có class "box':
+  const els = document.querySelectorAll('.box');
+  // quét tất cả các tags tìm thấy
+  for (let i = 0; i < els.length; i++) {
+    // với tag thứ i
+    let el = els[i];
+    // xóa bỏ class "hide" để cho tag hiện lên
+    el.classList.remove('hide');
+    // nếu còn phần tử phía sau thì tăng i lên 1 đơn vị
+    // quay lại với xử lý tag thứ i + 1
+  }
+
+  const getElements = (selector) => {
+    return Array.from(document.querySelectorAll(selector));
+  };
+
+  const getRemover = (el) => {
+    return (className) => {
+      el.classList.remove(className);
+      return el;
+    };
+  };
+
+  const els = getElements('.box')
+    .map(getRemover)
+    .map(removeClass => removeClass('hide'));
+</script>
+
+</html>
